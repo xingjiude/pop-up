@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"content="width=device-width,initial-scale=1.0"/>
+    <title>排行榜</title>
+    <link href="css/base.css" rel="stylesheet">
+    <script>
+        /**
+         * 如果页面的宽度超过了640px，那么页面中html的font-size恒为100px，
+         * 否则，页面中html的font-size的大小为： 100 * (当前页面宽度 / 640)
+         * rem布局的核心代码
+         */
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',//手机横竖屏幕事件 屏幕调整大小事件
+            recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+
+    <div class="center">
+        <div class="close"><img src="images/close.png"></div>
+        <header class="tittle">
+            <div class="header"><h1>LIST</h1></div>
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#today" data-toggle="tab">Today</a></li>
+                <li><a href="#friends" data-toggle="tab">Weeks</a></li>
+                <li><a href="#history" data-toggle="tab"><img src="images/up.png">Month</a></li>
+            </ul>
+            <div class="all"><img src="images/all.png"></div>
+        </header>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in" id="today">
+            </div>
+            <div class="tab-pane fade" id="friends">
+            </div>
+            <div class="tab-pane fade" id="history">
+            </div>
+        </div>
+        <footer>
+            <div class="btn">
+                <a href="" type="button" class="l-btn"></a>
+                <a href="" type="button" class="r-btn"></a>
+            </div>
+            <div class="share">
+                <div>
+                    <a id="sina" href=""><img src="images/sina.png"></a>
+                    <a id="qqzone" href=""><img src="images/qqzone.png"></a>
+                    <a id="twitter" href=""><img src="images/t.png"></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/common.js"></script>
+</body>
+</html>
